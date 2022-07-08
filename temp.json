@@ -1,8 +1,5 @@
 {
-  "inputs": {
-    "environment": "test",
-    "input1": "sdefwer",
-    "input2": "adasd"
-  },
-  "temp": "value"
+  "environment": "dev",
+  "input1": "sdfgsdf",
+  "input2": "zcsas"
 }
