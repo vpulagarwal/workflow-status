@@ -34,7 +34,7 @@ jobs:
           echo "${{ env.WORKFLOW_DATE_TIME }}"
           echo ${{ github.actor }}
           echo ${{ github.event_name }}
-          jq .inputs ${{ github.event_path }}
+          jq .inputs ${{ github.event_path }} > temp.json
           jq -n \
           --arg workflow "${{ github.workflow }}" \
           --arg actor "${{ github.actor }}" \
@@ -48,10 +48,11 @@ jobs:
             echo "BADE_URL=[![demo_workflow](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml/badge.svg?branch=main&event=workflow_dispatch)](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml)" >> $GITHUB_ENV
           fi
 
+
       - name: Update status markdown
         run: |
-          echo "\n" >> workflow_status.md
-          echo "| ${{ github.workflow }} | ${{ github.event_name }} | ${{ github.actor }} | $(jq -r 'to_entries[] | "\(.key):\(.value)"') < $(jq .inputs ${{ github.event_path }}) | $(TZ=":Asia/Calcutta" date +'%Y-%m-%dT%H:%M:%S') | ${{ env.BADE_URL }} |" >> workflow_status.md
+          echo "  " >> workflow_status.md
+          echo "| ${{ github.workflow }} | ${{ github.event_name }} | ${{ github.actor }} | $(jq -r 'to_entries[] | "\(.key):\(.value)"' < temp.json )  | $(TZ=":Asia/Calcutta" date +'%Y-%m-%dT%H:%M:%S') | ${{ env.BADE_URL }} |" >> workflow_status.md
       
       - name: Commit status
         run: |
