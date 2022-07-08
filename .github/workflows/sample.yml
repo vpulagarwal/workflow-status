@@ -51,4 +51,10 @@ jobs:
       - name: Update status markdown
         run: |
           echo "| ${{ github.workflow }} | ${{ github.event_name }} | ${{ github.actor }} | $(jq .inputs ${{ github.event_path }}) | $(TZ=":Asia/Calcutta" date +'%Y-%m-%dT%H:%M:%S') | ${{ env.BADE_URL }} |" >> workflow_status.md
-          cat workflow_status.md
+      
+      - name: Commit status
+        run: |
+          git config --global user.name 'Vipul'
+          git config --global user.email '36162277+vpulagarwal@users.noreply.github.com'
+          git commit -am "Updating status badge"
+          git push
