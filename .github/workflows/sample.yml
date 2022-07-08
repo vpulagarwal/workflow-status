@@ -26,20 +26,15 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment || 'dev' }}
     steps:
-      - name: Set current date as env variable
-        run: echo "WORKFLOW_DATE_TIME=$(TZ=":Asia/Calcutta" date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
-      - name: Echo WORKFLOW_DATE_TIME
-        run: echo "${{ env.WORKFLOW_DATE_TIME }}"
-      - name: echo actor
-        run: echo ${{ github.actor }}
-      - name: echo event name
-        run: echo ${{ github.event_name	}}
-      - name: echo file at event path
-        run: cat ${{ github.event_path }}
-      - name: check jq
-        run: jq .inputs ${{ github.event_path }}
-      - name: Create JSON Object
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set and echo
         run: | 
+          echo "WORKFLOW_DATE_TIME=$(TZ=":Asia/Calcutta" date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+          echo "${{ env.WORKFLOW_DATE_TIME }}"
+          echo ${{ github.actor }}
+          echo ${{ github.event_name }}
+          jq .inputs ${{ github.event_path }}
           jq -n \
           --arg workflow "${{ github.workflow }}" \
           --arg actor "${{ github.actor }}" \
@@ -47,3 +42,6 @@ jobs:
           --arg WORKFLOW_DATE_TIME "${{ env.WORKFLOW_DATE_TIME }}" \
           --argjson inputs "$(jq .inputs ${{ github.event_path }})" \
           '$ARGS.named'
+      - name: Update status markdown
+        run: |
+          echo "| ${{ github.workflow }} | ${{ github.event_name }} | ${{ github.actor }} | $(jq .inputs ${{ github.event_path }}) | $(TZ=":Asia/Calcutta" date +'%Y-%m-%dT%H:%M:%S') ||"
