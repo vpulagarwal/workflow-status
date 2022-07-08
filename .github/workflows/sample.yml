@@ -26,6 +26,10 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment || 'dev' }}
     steps:
+      - name: Set current date as env variable
+        run: echo "WORKFLOW_DATE_TIME::$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+      - name: Echo WORKFLOW_DATE_TIME
+        run: echo $WORKFLOW_DATE_TIME
       - name: echo all
         run: echo "hello world from ${{ github.event.inputs.environment || 'dev' }}" 
       - name: echo actor
@@ -34,3 +38,5 @@ jobs:
         run: echo ${{ github.event_name	}}
       - name: echo file at event path
         run: cat ${{ github.event_path }}
+      - name: check jq
+        run: jq .inputs ${{ github.event_path }}
