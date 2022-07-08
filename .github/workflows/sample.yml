@@ -27,7 +27,7 @@ jobs:
     environment: ${{ github.event.inputs.environment || 'dev' }}
     steps:
       - name: Set current date as env variable
-        run: TZ=IST && echo "WORKFLOW_DATE_TIME=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+        run: echo "WORKFLOW_DATE_TIME=$(TZ=":Asia/Calcutta" date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
       - name: Echo WORKFLOW_DATE_TIME
         run: echo "${{ env.WORKFLOW_DATE_TIME }}"
       - name: echo actor
