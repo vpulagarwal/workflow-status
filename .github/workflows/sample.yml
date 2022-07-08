@@ -50,6 +50,7 @@ jobs:
 
       - name: Update status markdown
         run: |
+          echo "\n" >> workflow_status.md
           echo "| ${{ github.workflow }} | ${{ github.event_name }} | ${{ github.actor }} | $(jq -r 'to_entries[] | "\(.key):\(.value)"') < $(jq .inputs ${{ github.event_path }}) | $(TZ=":Asia/Calcutta" date +'%Y-%m-%dT%H:%M:%S') | ${{ env.BADE_URL }} |" >> workflow_status.md
       
       - name: Commit status
