@@ -27,7 +27,7 @@ jobs:
     environment: ${{ github.event.inputs.environment || 'dev' }}
     steps:
       - name: echo all
-        run: echo "hello world from ${{ github.event.inputs.environment || automated}}" 
+        run: echo "hello world from ${{ github.event.inputs.environment || automated }}" 
       - name: echo actor
         run: echo ${{ github.actor }}
       - name: echo event object
