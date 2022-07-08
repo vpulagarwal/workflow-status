@@ -1,0 +1,8 @@
+{
+  "inputs": {
+    "environment": "test",
+    "input1": "sdefwer",
+    "input2": "adasd"
+  },
+  "temp": "value"
+}
