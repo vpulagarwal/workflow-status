@@ -1,0 +1,30 @@
+name: demo_workflow
+on:
+  push:
+    branches: [ main ]
+    paths:
+    - 'push.json'
+  workflow_dispatch:
+    inputs:
+      input1:
+        description: sample input1
+        type: string
+        required: true
+      input2: 
+        description: sample input2
+        type: string
+        required: true
+      environment:
+        description: "Cloud environment" 
+        type: choice
+        required: true
+        default: dev
+        options: ['dev','test', 'prod']
+jobs:
+  echo_something:
+    name: echo_${{ github.event.inputs.environment || 'dev' }}
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment || 'dev' }}
+    steps:
+      - name: echo all
+        run: echo "hello world from ${{ github.event.inputs.environment }}" 
