@@ -1,5 +1,6 @@
 | Workflow  | Event Type | Actor | Inputs | Last run date and time | Last Run Status |
-| ------------- |:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|| demo_workflow | workflow_dispatch | vpulagarwal | {
+| ------------- |:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
+| demo_workflow | workflow_dispatch | vpulagarwal | {
   "environment": "test",
   "input1": "sdefwer",
   "input2": "adasd"
