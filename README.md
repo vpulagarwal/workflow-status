@@ -15,3 +15,10 @@ Status Badge
 
 
 - Other params:
+
+
+| Workflow  | Event Type | Actor | Inputs | Last run date and time | Last Run Status |
+| ------------- |:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
+| left foo      | right foo     |
+| left bar      | right bar     |
+| left baz      | right baz     |

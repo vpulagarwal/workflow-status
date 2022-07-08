@@ -30,8 +30,6 @@ jobs:
         run: echo "WORKFLOW_DATE_TIME=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
       - name: Echo WORKFLOW_DATE_TIME
         run: echo "${{ env.WORKFLOW_DATE_TIME }}"
-      - name: echo all
-        run: echo "hello world from ${{ github.event.inputs.environment || 'dev' }}" 
       - name: echo actor
         run: echo ${{ github.actor }}
       - name: echo event name
@@ -40,3 +38,12 @@ jobs:
         run: cat ${{ github.event_path }}
       - name: check jq
         run: jq .inputs ${{ github.event_path }}
+      - name: Create JSON Object
+        run: | 
+          jq -n \
+          --arg workflow "${{ github.workflow }}" \
+          --arg actor "${{ github.actor }}" \
+          --arg event_name "${{ github.event_name }}" \
+          --arg WORKFLOW_DATE_TIME "${{ env.WORKFLOW_DATE_TIME }}" \
+          --argjson inputs "$(jq .inputs ${{ github.event_path }})" \
+          '$ARGS.named'
