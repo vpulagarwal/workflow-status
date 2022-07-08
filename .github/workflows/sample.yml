@@ -42,6 +42,13 @@ jobs:
           --arg WORKFLOW_DATE_TIME "${{ env.WORKFLOW_DATE_TIME }}" \
           --argjson inputs "$(jq .inputs ${{ github.event_path }})" \
           '$ARGS.named'
+          if [[ ${{ github.event_name }} == push ]]; then
+            echo "BADE_URL=[![demo_workflow](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml/badge.svg?branch=main&event=push)](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml)" >> $GITHUB_ENV
+          else
+            echo "BADE_URL=[![demo_workflow](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml/badge.svg?branch=main&event=workflow_dispatch)](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml)" >> $GITHUB_ENV
+          fi
+
       - name: Update status markdown
         run: |
-          echo "| ${{ github.workflow }} | ${{ github.event_name }} | ${{ github.actor }} | $(jq .inputs ${{ github.event_path }}) | $(TZ=":Asia/Calcutta" date +'%Y-%m-%dT%H:%M:%S') ||"
+          echo "| ${{ github.workflow }} | ${{ github.event_name }} | ${{ github.actor }} | $(jq .inputs ${{ github.event_path }}) | $(TZ=":Asia/Calcutta" date +'%Y-%m-%dT%H:%M:%S') | ${{ env.BADE_URL }} |" >> workflow_status.md
+          cat workflow_status.md
