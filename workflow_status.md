@@ -5,3 +5,6 @@
 | [![demo_workflow](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml/badge.svg?branch=main&event=workflow_dispatch)](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml) |  dev | workflow_dispatch | vpulagarwal | environment:dev
 input1:dsfsdf
 input2:sdfsdf  | 2022-07-11T11:47:59 |
+| [![demo_workflow](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml/badge.svg?branch=main&event=workflow_dispatch)](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml) |  dev | workflow_dispatch | vpulagarwal | environment:dev
+input1:sdasd
+input2:asdasd  | 2022-07-11T11:49:16 |
