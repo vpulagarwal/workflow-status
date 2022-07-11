@@ -1,2 +1,3 @@
 | Workflow  | Environment | Event Type | Actor | Inputs | Last run date and time |
 | ------------- |:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
+| [![demo_workflow](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml/badge.svg?branch=main&event=workflow_dispatch)](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml) |  dev | workflow_dispatch | vpulagarwal | environment:dev input1:sdfsdfs input2:sdfsdf   | 2022-07-11T11:33:53 |
