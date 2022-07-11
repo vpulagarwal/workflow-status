@@ -28,34 +28,23 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Set and echo
+      - name: Set variables
         run: | 
           echo "WORKFLOW_DATE_TIME=$(TZ=":Asia/Calcutta" date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
-          echo "${{ env.WORKFLOW_DATE_TIME }}"
-          echo ${{ github.actor }}
-          echo ${{ github.event_name }}
-          jq .inputs ${{ github.event_path }} > temp.json
-          jq -n \
-          --arg workflow "${{ github.workflow }}" \
-          --arg actor "${{ github.actor }}" \
-          --arg event_name "${{ github.event_name }}" \
-          --arg WORKFLOW_DATE_TIME "${{ env.WORKFLOW_DATE_TIME }}" \
-          --argjson inputs "$(jq .inputs ${{ github.event_path }})" \
-          '$ARGS.named'
+          jq .inputs ${{ github.event_path }} > temp.json          
           if [[ ${{ github.event_name }} == push ]]; then
-            echo "BADE_URL=[![demo_workflow](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml/badge.svg?branch=main&event=push)](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml)" >> $GITHUB_ENV
+            echo "BADGE_URL=[![demo_workflow](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml/badge.svg?branch=main&event=push)](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml)" >> $GITHUB_ENV
           else
-            echo "BADE_URL=[![demo_workflow](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml/badge.svg?branch=main&event=workflow_dispatch)](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml)" >> $GITHUB_ENV
+            echo "BADGE_URL=[![demo_workflow](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml/badge.svg?branch=main&event=workflow_dispatch)](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml)" >> $GITHUB_ENV
           fi
-
-
       - name: Update status markdown
         run: |
-          echo "| ${{ github.workflow }} | ${{ github.event_name }} | ${{ github.actor }} | $(jq -r 'to_entries[] | "\(.key):\(.value)"' < temp.json | tr '\n' ' ')  | $(TZ=":Asia/Calcutta" date +'%Y-%m-%dT%H:%M:%S') | ${{ env.BADE_URL }} |" >> workflow_status.md
-      
+          echo "| ${{ github.workflow }} | ${{ github.event_name }} | ${{ github.actor }} | $(jq -r 'to_entries[] | "\(.key):\(.value)"' < temp.json | tr '\n' ' ')  | $(TZ=":Asia/Calcutta" date +'%Y-%m-%dT%H:%M:%S') | ${{ env.BADGE_URL }} |" >> workflow_status.md
       - name: Commit status
         run: |
+          rm temp.json
           git config --global user.name 'Vipul'
           git config --global user.email '36162277+vpulagarwal@users.noreply.github.com'
           git commit -am "Updating status badge"
           git push
+          
