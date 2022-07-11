@@ -1,12 +1,2 @@
 | Workflow  | Environment | Event Type | Actor | Inputs | Last run date and time |
 | ------------- |:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
-| [![demo_workflow](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml/badge.svg?branch=main&event=workflow_dispatch)](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml) |  dev | workflow_dispatch | vpulagarwal | environment:dev input1:sdfsdfs input2:sdfsdf   | 2022-07-11T11:33:53 |
-| [![demo_workflow](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml/badge.svg?branch=main&event=workflow_dispatch)](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml) |  dev | workflow_dispatch | vpulagarwal | environment:dev<input1:ssdasdasd<input2:sdaasdad<  | 2022-07-11T11:36:08 |
-| [![demo_workflow](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml/badge.svg?branch=main&event=workflow_dispatch)](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml) |  dev | workflow_dispatch | vpulagarwal | environment:dev
-input1:dsfsdf
-input2:sdfsdf  | 2022-07-11T11:47:59 |
-| [![demo_workflow](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml/badge.svg?branch=main&event=workflow_dispatch)](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml) |  dev | workflow_dispatch | vpulagarwal | environment:dev
-input1:sdasd
-input2:asdasd  | 2022-07-11T11:49:16 |
-| [![demo_workflow](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml/badge.svg?branch=main&event=workflow_dispatch)](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml) |  dev | workflow_dispatch | vpulagarwal | environment:dev <br>input1:sdfdsf input2:sdfsdf   | 2022-07-11T12:55:33 |
-| [![demo_workflow](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml/badge.svg?branch=main&event=workflow_dispatch)](https://github.com/vpulagarwal/workflow-status/actions/workflows/sample.yml) |  dev | workflow_dispatch | vpulagarwal | environment:dev <br>input1:sdsdfa <br>input2:sdasd <br>  | 2022-07-11T12:57:50 |
