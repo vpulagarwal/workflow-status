@@ -39,7 +39,7 @@ jobs:
           fi
       - name: Update status markdown
         run: |
-          echo "| ${{ env.BADGE_URL }} |  ${{ github.env }} | ${{ github.event_name }} | ${{ github.actor }} | $(jq -r 'to_entries[] | "\(.key):\(.value)"' < temp.json | tr '\n' '<->')  | $(TZ=":Asia/Calcutta" date +'%Y-%m-%dT%H:%M:%S') |" >> workflow_status.md
+          echo "| ${{ env.BADGE_URL }} |  ${{ github.event.inputs.environment || 'dev' }} | ${{ github.event_name }} | ${{ github.actor }} | $(jq -r 'to_entries[] | "\(.key):\(.value)"' < temp.json | tr '\n' ':::')  | $(TZ=":Asia/Calcutta" date +'%Y-%m-%dT%H:%M:%S') |" >> workflow_status.md
       - name: Commit status
         run: |
           rm temp.json
